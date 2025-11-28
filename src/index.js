@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Client, IntentsBitField} = require('discord.js');
+const {Client, IntentsBitField, EmbedBuilder} = require('discord.js');
 
 const client = new Client({
     intents: [
@@ -26,13 +26,38 @@ client.on('messageCreate', (message) => {
 
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-
+    
+    // HEY
     if (interaction.commandName === 'hey') {
         interaction.reply('hey!');
     }
 
+    // PING
     if (interaction.commandName === 'ping') {
         interaction.reply('pong!');
+    }
+
+    // ADD
+    if (interaction.commandName === 'add') {
+        const num1 = interaction.options.get('first-number').value;
+        const num2 = interaction.options.get('second-number').value;
+
+        interaction.reply(`The sum of ${num1} and ${num2} is ${num1 + num2}`);
+    }
+
+    // GITHUB & INFO
+    if (interaction.commandName === 'github') {
+        const embed = new EmbedBuilder()
+            .setTitle("Rowlet's Information!")
+            .setDescription("This is all of Rowlet's important information!\n\nRowlet is a Discord bot created by @robbyunderdog. His creation was originally an experiment with using discord.js over discord.py. Rowlet has evolved to be much more than that though.\n\n> https://github.com/robbyunderdog/discordBotRowlet")
+            .setImage("https://preview.redd.it/why-rowlet-is-the-best-v0-3e6sa5klo4ne1.jpg?width=1080&crop=smart&auto=webp&s=d41ed2edaa0e31c21a9525022e19b08d77b93575")
+            .setColor("#1b7e3c")
+            .setFooter({
+                text: "FUCK Litten, all my homies hate that guy.",
+                iconURL: "https://preview.redd.it/why-rowlet-is-the-best-v0-3e6sa5klo4ne1.jpg?width=1080&crop=smart&auto=webp&s=d41ed2edaa0e31c21a9525022e19b08d77b93575",
+            })
+            .setTimestamp();
+        interaction.reply({embeds: [embed]});
     }
 });
 
