@@ -1,4 +1,48 @@
-# Rowlet
-Rowlet is a test Discord bot for experimenting with discord.js.
 
-Learning Javascript is rough, but it seems to be a much faster option than python for certain tasks, mainly Octave, my music playing bot. Octave has issues with downloading songs while playing them at the same time, so hopefully JavaScripts speed will be able to help mitigate that issue.
+# Rowlet
+
+A discord.js Discord bot meant to assist with server maintenance and moderating. Currently in beginning stages.
+
+
+
+## Features
+
+- Plenty of slash commands to assist in moderation.
+- Leveling system
+- Auto-Role functions
+- Other fun features and commands!
+
+
+## Documentation
+
+COMING SOON
+
+
+## Roadmap
+
+- Leveling system
+- Rank/Level command
+- Database integration
+- Auto-Roles
+- Balance command
+
+
+
+
+## FAQ
+
+#### Will (insert moderation feature here) ever come to Rowlet?
+
+Most probably, it is a slow process but we are slowly adding everything someone might need for their server.
+
+#### Can I alter rules or permissions of Rowlet?
+
+Right now no. In the future adding customization to what or how the bot works is definitely something I want to work on.
+
+
+
+
+## Authors
+
+- [@robbyunderdog](https://www.github.com/robbyunderdog)
+
