@@ -52,7 +52,7 @@ module.exports = async (client, interaction) => {
             for (const permission of commandObject.botPermissions) {
                 const bot = interaction.guild.members.me;
 
-                if (!bot.permission.has(permission)) {
+                if (!bot.permissions.has(permission)) {
                     interaction.reply({
                         content: 'I do not have the required permissions.',
                         ephemeral: true,

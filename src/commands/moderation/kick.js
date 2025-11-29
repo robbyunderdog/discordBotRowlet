@@ -21,7 +21,7 @@ module.exports = {
         }
 
         if (targetUser.id === interaction.guild.ownerId) {
-            await interaction.editReply('You cannot ban that user. They own this shit.')
+            await interaction.editReply('You cannot kick that user. They own this shit.')
             return;
         }
 
@@ -34,41 +34,41 @@ module.exports = {
 
         // checks if target has greater or equal roles to requester
         if (targetUserRolePosition >= requestUserRolePosition) {
-            interaction.editReply('You can\'t ban that user as they have the same and/or higher role than you.');
+            interaction.editReply('You can\'t kick that user as they have the same and/or higher role than you.');
             return;
         }
 
         // checks if target has greater or equal roles to bot
         if (targetUserRolePosition >= botRolePosition) {
-            interaction.editReply('I can\'t ban that user because they have the same and/or higher role than me.');
+            interaction.editReply('I can\'t kick that user because they have the same and/or higher role than me.');
             return;
         }
 
-        // bans the target
+        // kicks the target
         try {
-            await targetUser.ban({reason});
-            await interaction.editReply(`User ${targetUser} was banned.\nReason: ${reason}`);
+            await targetUser.kick(reason);
+            await interaction.editReply(`User ${targetUser} was kicked.\nReason: ${reason}`);
         } catch (error) {
-            console.log(`There was an error with banning the user: ${error}`);
+            console.log(`There was an error with kicking the user: ${error}`);
         }
     },
 
-    name: 'ban',
-    description: 'Brings the hammer.',
+    name: 'kick',
+    description: 'Kicks target from server.',
     options: [
         {
             name: 'target-user',
-            description: 'User you want to ban.',
+            description: 'User you want to kick.',
             type: ApplicationCommandOptionType.Mentionable,
             required: true,
         },
         {
             name: 'reason',
-            description: 'Reason for the ban.',
+            description: 'Reason for the kick.',
             type: ApplicationCommandOptionType.String,
         }
     ],
 
-    permissionsRequired: [PermissionFlagsBits.BanMembers],
-    botPermissions: [PermissionFlagsBits.BanMembers],
+    permissionsRequired: [PermissionFlagsBits.KickMembers],
+    botPermissions: [PermissionFlagsBits.KickMembers],
 }
