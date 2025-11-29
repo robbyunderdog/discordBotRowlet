@@ -24,27 +24,22 @@ module.exports = {
             await interaction.editReply('You cannot kick that user. They own this shit.')
             return;
         }
-
-        // gets targets highest role
-        const targetUserRolePosition = targetUser.roles.highest.position;
-        // gets requesters highest role
-        const requestUserRolePosition = interaction.member.roles.highest.position;
-        // gets bots highest role
-        const botRolePosition = interaction.guild.members.me.roles.highest.position;
-
-        // checks if target has greater or equal roles to requester
-        if (targetUserRolePosition >= requestUserRolePosition) {
+        
+        const targetUserRolePosition = targetUser.roles.highest.position; // gets targets highest role
+        const requestUserRolePosition = interaction.member.roles.highest.position; // gets requesters highest role
+        const botRolePosition = interaction.guild.members.me.roles.highest.position; // gets bots highest role
+        
+        if (targetUserRolePosition >= requestUserRolePosition) { // checks if target has greater or equal roles to requester
             interaction.editReply('You can\'t kick that user as they have the same and/or higher role than you.');
             return;
         }
-
-        // checks if target has greater or equal roles to bot
-        if (targetUserRolePosition >= botRolePosition) {
+        
+        if (targetUserRolePosition >= botRolePosition) { // checks if target has greater or equal roles to bot
             interaction.editReply('I can\'t kick that user because they have the same and/or higher role than me.');
             return;
         }
-
-        // kicks the target
+        
+        // KICKS THE TARGET
         try {
             await targetUser.kick(reason);
             await interaction.editReply(`User ${targetUser} was kicked.\nReason: ${reason}`);
