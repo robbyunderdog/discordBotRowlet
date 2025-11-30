@@ -1,5 +1,6 @@
 require('dotenv').config();
 const {Client, IntentsBitField, EmbedBuilder, ActivityType} = require('discord.js');
+const mongoose = require('mongoose');
 const eventHandler = require('./handlers/eventHandler');
 
 const client = new Client({
@@ -11,15 +12,15 @@ const client = new Client({
     ],
 });
 
-eventHandler(client);
+(async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
+        console.log('Connected to MongoDB.');
 
-/* client.on('clientReady', (c) => {
-    console.log(`${c.user.tag} is online!`);
-
-    setInterval(() => {
-        let random = Math.floor(Math.random() * status.length);
-        client.user.setActivity(status[random]);
-    }, 20000);
-}); */
+        eventHandler(client);
+    } catch (error) {
+        console.log(`Error connecting to MongoDB: ${error}`);
+    }
+})();
 
 client.login(process.env.TOKEN);
